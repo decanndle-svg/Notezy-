@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notezy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+    <h1>✦ Notezy</h1>
+    <p class="tagline">Catatan hari ini, masa depan nanti.</p>
+
+    <input id="search" placeholder="Cari catatan, mata pelajaran, atau kata kunci...">
+
+    <button id="btnNew" class="btn-new">+ Catatan Baru</button>
+
+    <div class="tabs">
+      <button class="tab active" data-filter="semua">Semua Catatan</button>
+      <button class="tab" data-filter="favorit">⭐ Favorit</button>
+    </div>
+
+    <h2>Mata Pelajaran</h2>
+    <div id="subjects" class="subjects"></div>
+
+    <h2>Catatan</h2>
+    <div id="noteList"></div>
+  </div>
+
+  <!-- Jendela pop-up untuk membuat/mengedit catatan -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <h2 id="modalTitle">Catatan Baru</h2>
+      <input id="title" placeholder="Judul catatan">
+     <select id="subject">
+  <option>Matematika</option>
+  <option>Bahasa Indonesia</option>
+  <option>Bahasa Inggris</option>
+  <option>IPA</option>
+  <option>IPS</option>
+  <option>Informatika</option>
+  <option>PPKn</option>
+  <option>Seni Budaya</option>
+  <option>PJOK</option>
+  <option>Pendidikan Agama</option>
+</select>
+      <textarea id="content" rows="6" placeholder="Tulis materi pelajaran di sini..."></textarea>
+      <div class="modal-actions">
+        <button id="btnCancel" class="btn-cancel">Batal</button>
+        <button id="btnSave" class="btn-save">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
