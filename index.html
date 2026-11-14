@@ -8,44 +8,95 @@
 </head>
 <body>
 
-  <div class="app">
-    <h1>✦ Notezy</h1>
+  <!-- LAYAR LOGIN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="logo logo-big">✦</div>
+    <h1>Notezy</h1>
     <p class="tagline">Catatan hari ini, masa depan nanti.</p>
-
-    <input id="search" placeholder="Cari catatan, mata pelajaran, atau kata kunci...">
-
-    <button id="btnNew" class="btn-new">+ Catatan Baru</button>
-
-    <div class="tabs">
-      <button class="tab active" data-filter="semua">Semua Catatan</button>
-      <button class="tab" data-filter="favorit">⭐ Favorit</button>
-    </div>
-
-    <h2>Mata Pelajaran</h2>
-    <div id="subjects" class="subjects"></div>
-
-    <h2>Catatan</h2>
-    <div id="noteList"></div>
+    <button id="btnLogin" class="btn-google">Masuk dengan Google</button>
+    <p class="login-note">Catatanmu tersimpan aman dan bisa dibuka dari perangkat mana saja.</p>
   </div>
 
-  <!-- Jendela pop-up untuk membuat/mengedit catatan -->
+  <!-- APLIKASI UTAMA -->
+  <div id="appBox" class="layout is-hidden">
+
+    <!-- Menu samping -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">✦</span>
+        <span class="brand-name">Notezy</span>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-view="home">🏠 Beranda</button>
+        <button class="menu-item" data-view="all">📄 Semua Catatan</button>
+        <button class="menu-item" data-view="favorit">⭐ Favorit</button>
+        <button class="menu-item" data-view="mapel">📖 Mata Pelajaran</button>
+      </nav>
+
+      <div class="side-title">Pelajaran</div>
+      <div id="sideSubjects" class="side-subjects"></div>
+      <button id="btnAddSubject" class="side-add">+ Tambah Pelajaran</button>
+    </aside>
+
+    <!-- Bagian utama -->
+    <main class="main">
+      <header class="topbar">
+        <input id="search" placeholder="Cari catatan, mata pelajaran, atau kata kunci...">
+        <div class="user">
+          <img id="userPhoto" class="avatar is-hidden" alt="Foto profil">
+          <span id="userName"></span>
+          <button id="btnLogout" class="btn-logout">Keluar</button>
+        </div>
+      </header>
+
+      <!-- Banner sambutan (hanya di Beranda) -->
+      <section id="hero" class="hero">
+        <h2>Selamat Datang di <span>Notezy</span>!</h2>
+        <p>Tempat mencatat, menyimpan, dan mengatur materi pembelajaran dengan mudah.</p>
+        <div class="quick">
+          <button id="btnNew" class="q q-new">＋ Catatan Baru</button>
+          <button class="q q-all" data-view="all">📄 Semua Catatan</button>
+          <button class="q q-fav" data-view="favorit">⭐ Favorit</button>
+          <button class="q q-sub" data-view="mapel">📖 Mata Pelajaran</button>
+        </div>
+      </section>
+
+      <!-- Kartu mata pelajaran (hanya di menu Mata Pelajaran) -->
+      <section id="subjectGrid" class="subject-grid is-hidden"></section>
+
+      <!-- Daftar catatan -->
+      <div id="listHead" class="section-head">
+        <h3 id="listTitle">Catatan Terbaru</h3>
+        <button id="btnNewSmall" class="btn-small is-hidden">＋ Catatan Baru</button>
+      </div>
+      <div id="noteList" class="notes"></div>
+
+      <!-- Banner semangat (hanya di Beranda) -->
+      <section id="banner" class="banner">
+        <div class="banner-icon">📝</div>
+        <div>
+          <h4>Tetap Semangat Belajar!</h4>
+          <p>Setiap catatan kecil adalah langkah besar untuk masa depanmu. ✨</p>
+        </div>
+        <div class="banner-note">Jangan lupa catat ya! ♡</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- POP-UP CATATAN -->
   <div id="modal" class="modal hidden">
     <div class="modal-box">
       <h2 id="modalTitle">Catatan Baru</h2>
       <input id="title" placeholder="Judul catatan">
-     <select id="subject">
-  <option>Matematika</option>
-  <option>Bahasa Indonesia</option>
-  <option>Bahasa Inggris</option>
-  <option>IPA</option>
-  <option>IPS</option>
-  <option>Informatika</option>
-  <option>PPKn</option>
-  <option>Seni Budaya</option>
-  <option>PJOK</option>
-  <option>Pendidikan Agama</option>
-</select>
+      <select id="subject"></select>
       <textarea id="content" rows="6" placeholder="Tulis materi pelajaran di sini..."></textarea>
+
+      <label class="photo-label">📷 Tambah Foto (opsional)</label>
+      <input type="file" id="photo" accept="image/*">
+      <img id="preview" class="preview is-hidden" alt="Pratinjau foto">
+      <button id="btnRemovePhoto" class="btn-remove is-hidden" type="button">Hapus foto</button>
+
       <div class="modal-actions">
         <button id="btnCancel" class="btn-cancel">Batal</button>
         <button id="btnSave" class="btn-save">Simpan</button>
@@ -53,6 +104,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
